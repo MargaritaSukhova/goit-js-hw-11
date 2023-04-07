@@ -15,16 +15,16 @@ export function createGalleryCards(photos) {
   <img src="${webformatURL}" alt="${tags}" loading="lazy" class="gallery__img" />
   <div class="info">
     <p class="info-item">
-      <b>Likes: ${likes}</b>
+      <b>Likes: </b><span class="info-text">${likes}</span>
     </p>
     <p class="info-item">
-      <b>Views: ${views}</b>
+      <b>Views: </b><span class="info-text">${views}</span>
     </p>
     <p class="info-item">
-      <b>Comments: ${comments}</b>
+      <b>Comments: </b><span class="info-text">${comments}</span>
     </p>
     <p class="info-item">
-      <b>Downloads: ${downloads}</b>
+      <b>Downloads: </b><span class="info-text">${downloads}</span>
     </p>
   </div>
 </div>

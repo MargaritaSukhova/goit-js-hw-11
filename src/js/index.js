@@ -26,7 +26,6 @@ const onSearchFormSubmit = async event => {
     .toLowerCase();
   pixabayApi.q = searchQuery;
 
-  console.log(pixabayApi.q);
   try {
     const { data } = await pixabayApi.fetchPhotos();
     console.log(data);
@@ -75,10 +74,25 @@ const onLoadMoreBtnClick = async () => {
       'beforeend',
       createGalleryCards(data.hits)
     );
+
+    gallery.refresh();
+
+    smoothScroll();
   } catch (err) {
     console.log(err);
   }
 };
+
+function smoothScroll() {
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
+}
 
 searchFormEl.addEventListener('submit', onSearchFormSubmit);
 loadMoreBtnEl.addEventListener('click', onLoadMoreBtnClick);
