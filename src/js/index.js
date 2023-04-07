@@ -28,8 +28,6 @@ const onSearchFormSubmit = async event => {
 
   try {
     const { data } = await pixabayApi.fetchPhotos();
-    console.log(data);
-    console.log(pixabayApi.page);
 
     if (!data.hits.length || pixabayApi.q === '') {
       galleryListEl.innerHTML = '';
@@ -60,11 +58,9 @@ const onSearchFormSubmit = async event => {
 
 const onLoadMoreBtnClick = async () => {
   pixabayApi.page += 1;
-  console.log(pixabayApi.page);
 
   try {
     const { data } = await pixabayApi.fetchPhotos();
-    console.log(data);
 
     if (data.totalHits < pixabayApi.page * pixabayApi.perPage) {
       loadMoreBtnEl.classList.add('is-hidden');
