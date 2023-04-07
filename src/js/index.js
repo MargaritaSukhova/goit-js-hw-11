@@ -26,12 +26,13 @@ const onSearchFormSubmit = async event => {
     .toLowerCase();
   pixabayApi.q = searchQuery;
 
+  console.log(pixabayApi.q);
   try {
     const { data } = await pixabayApi.fetchPhotos();
     console.log(data);
     console.log(pixabayApi.page);
 
-    if (!data.hits.length) {
+    if (!data.hits.length || pixabayApi.q === '') {
       galleryListEl.innerHTML = '';
       loadMoreBtnEl.classList.add('is-hidden');
       Notify.failure(
@@ -51,6 +52,8 @@ const onSearchFormSubmit = async event => {
     });
 
     galleryListEl.innerHTML = createGalleryCards(data.hits);
+
+    gallery.refresh();
   } catch (err) {
     console.log(err);
   }
